@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Username:</b>
+  <%= @call_back.username %>
+</p>
+
+<p>
+  <b>Repository:</b>
+  <%= @call_back.repository %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%= @call_back.url %>
+</p>
+
+<p>
+  <b>Payload:</b>
+  <%= @call_back.payload %>
+</p>
+
+
+<%= link_to 'Edit', edit_call_back_path(@call_back) %> |
+<%= link_to 'Back', call_backs_path %>

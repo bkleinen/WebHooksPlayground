@@ -1,4 +1,7 @@
 WebHooksPlayground::Application.routes.draw do
+  resources :call_backs
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
