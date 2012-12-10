@@ -1,7 +1,13 @@
 require "spec_helper"
 
 describe CallBacksController do
-  describe "routing" do
+  describe "webhook callback route" do
+    it "routes to " do
+       post("/drblinken/VisualStats/notify").should route_to("call_backs#notify", username: "drblinken", repository: "VisualStats")
+    end
+  end
+  
+  describe "scaffolded default routing" do
 
     it "routes to #index" do
       get("/call_backs").should route_to("call_backs#index")

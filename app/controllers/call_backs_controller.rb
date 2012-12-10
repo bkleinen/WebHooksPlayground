@@ -52,6 +52,27 @@ class CallBacksController < ApplicationController
       end
     end
   end
+  
+
+  # POST /call_backs
+  # POST /call_backs.json
+  def notify
+    @call_back = CallBack.new()
+    @call_back.username = params[:username]
+    @call_back.repository = params[:repository]
+    @call_back.payload = params
+
+    respond_to do |format|
+      if @call_back.save
+        format.html { redirect_to @call_back, notice: 'Call back was successfully created.' }
+        format.json { render json: @call_back, status: :created, location: @call_back }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @call_back.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
 
   # PUT /call_backs/1
   # PUT /call_backs/1.json
