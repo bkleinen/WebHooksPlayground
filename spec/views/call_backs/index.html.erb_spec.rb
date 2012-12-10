@@ -24,6 +24,6 @@ describe "call_backs/index" do
     assert_select "tr>td", :text => "Username".to_s, :count => 2
     assert_select "tr>td", :text => "Repository".to_s, :count => 2
     assert_select "tr>td", :text => "Url".to_s, :count => 2
-    assert_select "tr>td", :text => "MyText".to_s, :count => 2
+    assert_select "tr>td", :text => "MyText".to_s, :count => 0
   end
 end
