@@ -11,13 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121209233518) do
+ActiveRecord::Schema.define(:version => 20121210011739) do
 
   create_table "call_backs", :force => true do |t|
     t.string   "username"
     t.string   "repository"
     t.string   "url"
     t.text     "payload"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "name"
+    t.string   "token"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

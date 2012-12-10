@@ -1,4 +1,7 @@
 WebHooksPlayground::Application.routes.draw do
+  resources :users
+
+
   resources :call_backs
 
   # Sample of named route:
