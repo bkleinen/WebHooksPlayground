@@ -20,4 +20,5 @@ describe "users/index" do
     assert_select "tr>td", :text => "Name".to_s, :count => 2
     assert_select "tr>td", :text => "Token".to_s, :count => 0
   end
+  it "does "
 end
