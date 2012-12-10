@@ -4,7 +4,7 @@ describe "users/edit" do
   before(:each) do
     @user = assign(:user, stub_model(User,
       :name => "MyString",
-      :token => "MyString"
+      :token => "SecretToken"
     ))
   end
 

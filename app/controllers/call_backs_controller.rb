@@ -7,10 +7,10 @@ class CallBacksController < ApplicationController
   # POST /call_backs.json
   def notify
     @call_back = CallBack.new()
-    @call_back.username = params[:username]
-    @call_back.repository = params[:repository]
+    @call_back.username = username = params[:username]
+    @call_back.repository = repository =  params[:repository]
     @call_back.payload = params[:payload]
-    @call_back.url = request.headers['Authorization']
+    @call_back.url = authorize_notification(username,repository,request.headers['Authorization'])
    # @call_back = CallBack.new(params) would probably work, too
 
     respond_to do |format|
@@ -23,7 +23,14 @@ class CallBacksController < ApplicationController
       end
     end
   end
-
+  def authorize_notification(username,repository,sha256)
+    user = User.find_by_name(username)
+    return "user not found, hash #{sha256}" unless user
+    token = user.token
+    hash =  Digest::SHA256.hexdigest("#{username}/#{repository}#{token}")
+    note = (hash == sha256) ? "AUTHORIZED " : "NOT AUTHORIZED "
+    note + sha256
+  end
 
 
   # GET /call_backs
