@@ -6,3 +6,6 @@ env:
 script: 
 - RAILS_ENV=test bundle exec rake --trace db:schema:load
 - RAILS_ENV=test bundle exec rspec spec
+notifications:
+  webhooks:
+  - http://visualstats.herokuapp.com/bkleinen/WebHooksPlayground/notify
