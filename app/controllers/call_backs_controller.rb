@@ -1,4 +1,31 @@
 class CallBacksController < ApplicationController
+
+
+
+
+  # POST /call_backs
+  # POST /call_backs.json
+  def notify
+    @call_back = CallBack.new()
+    @call_back.username = params[:username]
+    @call_back.repository = params[:repository]
+    @call_back.payload = params[:payload]
+    @call_back.url = request.headers['Authorization']
+   # @call_back = CallBack.new(params) would probably work, too
+
+    respond_to do |format|
+      if @call_back.save
+        format.html { redirect_to @call_back, notice: 'Call back was successfully created.' }
+        format.json { render json: @call_back, status: :created, location: @call_back }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @call_back.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
+
   # GET /call_backs
   # GET /call_backs.json
   def index
@@ -54,24 +81,7 @@ class CallBacksController < ApplicationController
   end
   
 
-  # POST /call_backs
-  # POST /call_backs.json
-  def notify
-    @call_back = CallBack.new()
-    @call_back.username = params[:username]
-    @call_back.repository = params[:repository]
-    @call_back.payload = params
 
-    respond_to do |format|
-      if @call_back.save
-        format.html { redirect_to @call_back, notice: 'Call back was successfully created.' }
-        format.json { render json: @call_back, status: :created, location: @call_back }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @call_back.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
 
   # PUT /call_backs/1
