@@ -29,7 +29,8 @@ class CallBacksController < ApplicationController
     token = user.token
     hash =  Digest::SHA256.hexdigest("#{username}/#{repository}#{token}")
     note = (hash == sha256) ? "AUTHORIZED " : "NOT AUTHORIZED "
-    note + sha256
+    note += sha256 if sha256
+    note
   end
 
 
