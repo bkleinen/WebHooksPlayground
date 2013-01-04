@@ -3,8 +3,7 @@ class CallBacksController < ApplicationController
 
 
 
-  # POST /call_backs
-  # POST /call_backs.json
+  # POST /notify/:username/:repository
   def notify
     @call_back = CallBack.new()
     @call_back.username = username = params[:username]
